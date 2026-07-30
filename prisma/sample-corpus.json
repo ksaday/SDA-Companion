@@ -1,0 +1,485 @@
+{
+  "_meta": {
+    "WARNING": "SAMPLE / UNVERIFIED SEED DATA — NOT FOR PRODUCTION.",
+    "detail": [
+      "This file exists so the app runs and is demonstrable before the real NotebookLM workspace is connected.",
+      "Bible verse texts are King James Version (public domain) and are quoted accurately.",
+      "Hymn titles are real SDA Hymnal hymns, but the HYMN NUMBERS HERE ARE UNVERIFIED and must be checked against the official hymnal before any production use. Every seeded hymn is stored with verified=false and the UI labels it as sample data.",
+      "Video references are deliberate placeholders — no real YouTube IDs are invented. Real video refs arrive with the NotebookLM corpus sync.",
+      "Replace this entire file by running the corpus sync job against the real Drive/NotebookLM sources."
+    ]
+  },
+
+  "sources": [
+    {
+      "notebookLmSourceRef": "sample://hymnal-index",
+      "title": "SDA Hymnal — thematic index (SAMPLE)",
+      "type": "hymnal",
+      "language": "en",
+      "licenseNote": "Sample seed data. Hymn numbers UNVERIFIED — confirm against the official hymnal.",
+      "verified": false,
+      "chunks": [
+        {
+          "content": "Hymn 'Be Still, My Soul'. Themes: anxiety, fear, worry, restlessness, uncertain future, waiting on God, panic, sleeplessness, overwhelmed. This hymn speaks to the soul that is troubled and afraid, calling it to quietness because the Lord is on its side and bears the burden of grief and pain.",
+          "metadata": {
+            "kind": "hymn",
+            "hymnalEdition": "SDAH_1985",
+            "hymnNumber": 461,
+            "title": "Be Still, My Soul",
+            "reason": "It addresses the troubled, fearful soul directly and calls it to quietness on the ground that the Lord Himself carries the burden of grief and pain.",
+            "themes": ["anxiety", "fear", "worry", "peace", "trust", "waiting", "overwhelmed"]
+          }
+        },
+        {
+          "content": "Hymn 'It Is Well With My Soul'. Themes: sorrow, loss, grief, bereavement, financial ruin, job loss, peace in the middle of trouble, hardship. Written out of catastrophic personal loss, it confesses peace not because circumstances are well but because the soul rests in God.",
+          "metadata": {
+            "kind": "hymn",
+            "hymnalEdition": "SDAH_1985",
+            "hymnNumber": 530,
+            "title": "It Is Well With My Soul",
+            "reason": "It was written out of catastrophic loss, and confesses peace not because circumstances are well but because the soul rests in God — fitting when what has been lost cannot be undone.",
+            "themes": ["grief", "loss", "peace", "sorrow", "job loss", "hardship", "bereavement"]
+          }
+        },
+        {
+          "content": "Hymn 'What a Friend We Have in Jesus'. Themes: prayer, discouragement, loneliness, carrying burdens, family trouble, weariness. It reminds the discouraged that every grief may be carried to God in prayer, and that forfeited peace often comes from not bringing everything to Him.",
+          "metadata": {
+            "kind": "hymn",
+            "hymnalEdition": "SDAH_1985",
+            "hymnNumber": 499,
+            "title": "What a Friend We Have in Jesus",
+            "reason": "Its whole argument is that every grief may be carried to God in prayer, which meets both discouragement and the loneliness of carrying a burden without telling anyone.",
+            "themes": ["prayer", "discouragement", "loneliness", "burden", "family", "weariness"]
+          }
+        },
+        {
+          "content": "Hymn 'Great Is Thy Faithfulness'. Themes: thanksgiving, gratitude, provision, new mercies every morning, faithfulness through changing seasons, instability, transition, unemployment.",
+          "metadata": {
+            "kind": "hymn",
+            "hymnalEdition": "SDAH_1985",
+            "hymnNumber": 100,
+            "title": "Great Is Thy Faithfulness",
+            "reason": "It gives thanks for mercy that is renewed daily rather than for circumstances that are pleasant, which suits both a grateful heart and an unstable season.",
+            "themes": ["thanksgiving", "gratitude", "provision", "faithfulness", "praise", "transition"]
+          }
+        },
+        {
+          "content": "Hymn 'Trust and Obey'. Themes: guidance, obedience, wisdom for decisions, walking with God when the way is unclear, direction. It teaches that God shows the path to those who walk with Him.",
+          "metadata": {
+            "kind": "hymn",
+            "hymnalEdition": "SDAH_1985",
+            "hymnNumber": 590,
+            "title": "Trust and Obey",
+            "reason": "It frames guidance as something received while walking with God rather than worked out in advance, which speaks to a decision that is still unclear.",
+            "themes": ["wisdom", "guidance", "obedience", "decisions", "direction"]
+          }
+        },
+        {
+          "content": "Hymn 'A Mighty Fortress Is Our God'. Themes: strength, courage, spiritual battle, protection, endurance under attack, opposition, temptation.",
+          "metadata": {
+            "kind": "hymn",
+            "hymnalEdition": "SDAH_1985",
+            "hymnNumber": 506,
+            "title": "A Mighty Fortress Is Our God",
+            "reason": "It answers the need for strength with the image of a fortress that holds when the person inside it cannot, rather than with an appeal to try harder.",
+            "themes": ["strength", "courage", "protection", "battle", "endurance", "opposition"]
+          }
+        },
+        {
+          "content": "Hymn 'Blessed Assurance'. Themes: assurance of salvation, joy, testimony, gratitude, confidence in Christ, praise, doubt.",
+          "metadata": {
+            "kind": "hymn",
+            "hymnalEdition": "SDAH_1985",
+            "hymnNumber": 462,
+            "title": "Blessed Assurance",
+            "reason": "It is a hymn of settled assurance and testimony, fitting a heart that wants to praise God or to recover confidence after doubt.",
+            "themes": ["assurance", "joy", "praise", "thanksgiving", "testimony", "doubt"]
+          }
+        },
+        {
+          "content": "Hymn 'Abide With Me'. Themes: evening, loneliness, illness, dying, the passing of life's comforts, God's abiding presence, grief.",
+          "metadata": {
+            "kind": "hymn",
+            "hymnalEdition": "SDAH_1985",
+            "hymnNumber": 50,
+            "title": "Abide With Me",
+            "reason": "It asks for God's presence precisely as other comforts fail, which suits loneliness, illness, and the end of a season.",
+            "themes": ["loneliness", "illness", "grief", "presence", "evening", "dying"]
+          }
+        },
+        {
+          "content": "Hymn 'God Will Take Care of You'. Themes: provision, anxiety about money and daily needs, unemployment, job loss, family provision, God's care through every day.",
+          "metadata": {
+            "kind": "hymn",
+            "hymnalEdition": "SDAH_1985",
+            "hymnNumber": 99,
+            "title": "God Will Take Care of You",
+            "reason": "It speaks directly to fear about daily provision and household needs, which is usually the sharpest edge of losing work.",
+            "themes": ["provision", "anxiety", "money", "unemployment", "family", "care", "job loss"]
+          }
+        },
+        {
+          "content": "Hymn 'Count Your Blessings'. Themes: thanksgiving, discouragement, remembering God's goodness when tossed by the tempest of doubt, gratitude.",
+          "metadata": {
+            "kind": "hymn",
+            "hymnalEdition": "SDAH_1985",
+            "hymnNumber": 559,
+            "title": "Count Your Blessings",
+            "reason": "It treats deliberate remembering as the remedy for discouragement, so it serves both gratitude and a downcast heart.",
+            "themes": ["thanksgiving", "gratitude", "discouragement", "remembrance"]
+          }
+        }
+      ]
+    },
+
+    {
+      "notebookLmSourceRef": "sample://scripture-comfort",
+      "title": "Scripture for anxiety, fear and provision (KJV) — SAMPLE",
+      "type": "commentary",
+      "language": "en",
+      "licenseNote": "KJV text is public domain. Commentary is sample seed text.",
+      "verified": false,
+      "chunks": [
+        {
+          "content": "For anxiety, fear, panic and worry. Philippians 4:6-7. Be careful for nothing but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God. And the peace of God which passeth all understanding shall keep your hearts and minds through Christ Jesus. Anxiety is redirected into specific thankful prayer and the promised result is peace that guards the heart.",
+          "metadata": {
+            "kind": "verse",
+            "verseRef": "Philippians 4:6-7",
+            "translation": "KJV",
+            "book": "Philippians",
+            "chapter": 4,
+            "verseStart": 6,
+            "verseEnd": 7,
+            "quote": "Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God. And the peace of God, which passeth all understanding, shall keep your hearts and minds through Christ Jesus.",
+            "explanation": "This passage does not tell an anxious person to stop feeling; it tells them where to put the feeling. Anxiety is redirected into specific, thankful prayer, and the promised result is a peace that guards the heart like a garrison — beyond what the mind can explain.",
+            "themes": ["anxiety", "fear", "worry", "peace", "prayer", "panic"]
+          }
+        },
+        {
+          "content": "For anxiety and being overwhelmed by care and burden. 1 Peter 5:7. Casting all your care upon him for he careth for you. The reason given for casting care on God is that He cares.",
+          "metadata": {
+            "kind": "verse",
+            "verseRef": "1 Peter 5:7",
+            "translation": "KJV",
+            "book": "1 Peter",
+            "chapter": 5,
+            "verseStart": 7,
+            "verseEnd": 7,
+            "quote": "Casting all your care upon him; for he careth for you.",
+            "explanation": "The reason given for handing over anxiety is not that the worry is trivial, but that God cares. The invitation is to give over the whole weight, not a polite portion of it.",
+            "themes": ["anxiety", "care", "worry", "burden", "overwhelmed"]
+          }
+        },
+        {
+          "content": "For fear and needing strength and courage. Isaiah 41:10. Fear thou not for I am with thee be not dismayed for I am thy God I will strengthen thee yea I will help thee yea I will uphold thee with the right hand of my righteousness.",
+          "metadata": {
+            "kind": "verse",
+            "verseRef": "Isaiah 41:10",
+            "translation": "KJV",
+            "book": "Isaiah",
+            "chapter": 41,
+            "verseStart": 10,
+            "verseEnd": 10,
+            "quote": "Fear thou not; for I am with thee: be not dismayed; for I am thy God: I will strengthen thee; yea, I will help thee; yea, I will uphold thee with the right hand of my righteousness.",
+            "explanation": "Four promises answer fear in one sentence: presence, identity, strength, and a hand that holds when the person can no longer hold on themselves.",
+            "themes": ["fear", "strength", "help", "courage", "presence", "dismayed"]
+          }
+        },
+        {
+          "content": "For daily provision and worry about work food and family needs, unemployment, job loss, money, scarcity. Matthew 6:31-33. Therefore take no thought saying What shall we eat or What shall we drink or Wherewithal shall we be clothed for your heavenly Father knoweth that ye have need of all these things. But seek ye first the kingdom of God and his righteousness and all these things shall be added unto you.",
+          "metadata": {
+            "kind": "verse",
+            "verseRef": "Matthew 6:31-33",
+            "translation": "KJV",
+            "book": "Matthew",
+            "chapter": 6,
+            "verseStart": 31,
+            "verseEnd": 33,
+            "quote": "Therefore take no thought, saying, What shall we eat? or, What shall we drink? or, Wherewithal shall we be clothed? ... for your heavenly Father knoweth that ye have need of all these things. But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you.",
+            "explanation": "Spoken to people living close to the edge, it meets the practical fear of scarcity and lost income — not by promising luxury, but by naming what the Father already knows you need and reordering what is sought first.",
+            "themes": ["provision", "job loss", "money", "worry", "family", "unemployment", "work"]
+          }
+        }
+      ]
+    },
+
+    {
+      "notebookLmSourceRef": "sample://scripture-strength-wisdom",
+      "title": "Scripture for strength, wisdom and discouragement (KJV) — SAMPLE",
+      "type": "commentary",
+      "language": "en",
+      "licenseNote": "KJV text is public domain. Commentary is sample seed text.",
+      "verified": false,
+      "chunks": [
+        {
+          "content": "For weariness exhaustion and needing strength to continue. Isaiah 40:29-31. He giveth power to the faint and to them that have no might he increaseth strength. They that wait upon the LORD shall renew their strength they shall mount up with wings as eagles they shall run and not be weary and they shall walk and not faint.",
+          "metadata": {
+            "kind": "verse",
+            "verseRef": "Isaiah 40:29-31",
+            "translation": "KJV",
+            "book": "Isaiah",
+            "chapter": 40,
+            "verseStart": 29,
+            "verseEnd": 31,
+            "quote": "He giveth power to the faint; and to them that have no might he increaseth strength. Even the youths shall faint and be weary, and the young men shall utterly fall: But they that wait upon the LORD shall renew their strength; they shall mount up with wings as eagles; they shall run, and not be weary; and they shall walk, and not faint.",
+            "explanation": "Strength here is not summoned out of the tired person's own reserves — those are assumed to be gone. It is renewed by waiting on the Lord, which is why the promise is made specifically to the faint.",
+            "themes": ["strength", "weariness", "endurance", "waiting", "exhaustion", "tired"]
+          }
+        },
+        {
+          "content": "For needing wisdom and direction in a decision. James 1:5. If any of you lack wisdom let him ask of God that giveth to all men liberally and upbraideth not and it shall be given him.",
+          "metadata": {
+            "kind": "verse",
+            "verseRef": "James 1:5",
+            "translation": "KJV",
+            "book": "James",
+            "chapter": 1,
+            "verseStart": 5,
+            "verseEnd": 5,
+            "quote": "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him.",
+            "explanation": "The offer is unqualified. God gives generously, and — the text is careful to say — without scolding the person for having needed to ask in the first place.",
+            "themes": ["wisdom", "guidance", "decisions", "direction", "asking"]
+          }
+        },
+        {
+          "content": "For guidance when the path is unclear and a decision must be made. Proverbs 3:5-6. Trust in the LORD with all thine heart and lean not unto thine own understanding. In all thy ways acknowledge him and he shall direct thy paths.",
+          "metadata": {
+            "kind": "verse",
+            "verseRef": "Proverbs 3:5-6",
+            "translation": "KJV",
+            "book": "Proverbs",
+            "chapter": 3,
+            "verseStart": 5,
+            "verseEnd": 6,
+            "quote": "Trust in the LORD with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.",
+            "explanation": "Direction is promised to the person who stops relying solely on their own analysis — not because analysis is worthless, but because it is not load-bearing.",
+            "themes": ["wisdom", "guidance", "trust", "direction", "decisions"]
+          }
+        },
+        {
+          "content": "For discouragement depression sadness and a downcast soul. Psalm 42:11. Why art thou cast down O my soul and why art thou disquieted within me hope thou in God for I shall yet praise him who is the health of my countenance and my God.",
+          "metadata": {
+            "kind": "verse",
+            "verseRef": "Psalm 42:11",
+            "translation": "KJV",
+            "book": "Psalms",
+            "chapter": 42,
+            "verseStart": 11,
+            "verseEnd": 11,
+            "quote": "Why art thou cast down, O my soul? and why art thou disquieted within me? hope thou in God: for I shall yet praise him, who is the health of my countenance, and my God.",
+            "explanation": "The psalmist speaks honestly to his own discouragement instead of denying it, then answers it with hope rather than with reasons to cheer up. Discouragement is allowed to be real here.",
+            "themes": ["discouragement", "depression", "sadness", "hope", "despair", "downcast"]
+          }
+        },
+        {
+          "content": "For the brokenhearted and those close to despair and crushed in spirit. Psalm 34:18. The LORD is nigh unto them that are of a broken heart and saveth such as be of a contrite spirit.",
+          "metadata": {
+            "kind": "verse",
+            "verseRef": "Psalm 34:18",
+            "translation": "KJV",
+            "book": "Psalms",
+            "chapter": 34,
+            "verseStart": 18,
+            "verseEnd": 18,
+            "quote": "The LORD is nigh unto them that are of a broken heart; and saveth such as be of a contrite spirit.",
+            "explanation": "Nearness is promised at the point of brokenness itself, not after recovery — so it is not a verse to be earned back into.",
+            "themes": ["discouragement", "grief", "brokenhearted", "despair", "comfort"]
+          }
+        },
+        {
+          "content": "For rest when carrying too much, overwhelmed, overworked, heavy laden, burdened. Matthew 11:28-29. Come unto me all ye that labour and are heavy laden and I will give you rest. Take my yoke upon you and learn of me for I am meek and lowly in heart and ye shall find rest unto your souls.",
+          "metadata": {
+            "kind": "verse",
+            "verseRef": "Matthew 11:28-29",
+            "translation": "KJV",
+            "book": "Matthew",
+            "chapter": 11,
+            "verseStart": 28,
+            "verseEnd": 29,
+            "quote": "Come unto me, all ye that labour and are heavy laden, and I will give you rest. Take my yoke upon you, and learn of me; for I am meek and lowly in heart: and ye shall find rest unto your souls.",
+            "explanation": "The invitation is addressed to the overworked and overloaded by name, and the rest offered is for the soul — which is why it still applies when the workload itself cannot change.",
+            "themes": ["rest", "weariness", "burden", "overwhelmed", "labour", "tired"]
+          }
+        }
+      ]
+    },
+
+    {
+      "notebookLmSourceRef": "sample://scripture-family-thanks",
+      "title": "Scripture for family, thanksgiving and praise (KJV) — SAMPLE",
+      "type": "commentary",
+      "language": "en",
+      "licenseNote": "KJV text is public domain. Commentary is sample seed text.",
+      "verified": false,
+      "chunks": [
+        {
+          "content": "For a struggling household family conflict marriage children and trouble at home. Joshua 24:15. As for me and my house we will serve the LORD.",
+          "metadata": {
+            "kind": "verse",
+            "verseRef": "Joshua 24:15",
+            "translation": "KJV",
+            "book": "Joshua",
+            "chapter": 24,
+            "verseStart": 15,
+            "verseEnd": 15,
+            "quote": "...but as for me and my house, we will serve the LORD.",
+            "explanation": "A household under strain is steadied less by resolving every disagreement first than by one member settling, out loud, whom the house will serve.",
+            "themes": ["family", "household", "commitment", "conflict", "marriage", "children"]
+          }
+        },
+        {
+          "content": "For interceding and praying for family members children spouse parents household salvation. Acts 16:31. Believe on the Lord Jesus Christ and thou shalt be saved and thy house.",
+          "metadata": {
+            "kind": "verse",
+            "verseRef": "Acts 16:31",
+            "translation": "KJV",
+            "book": "Acts",
+            "chapter": 16,
+            "verseStart": 31,
+            "verseEnd": 31,
+            "quote": "Believe on the Lord Jesus Christ, and thou shalt be saved, and thy house.",
+            "explanation": "A promise long prayed by parents and spouses carrying concern for the people under their roof, spoken to a man whose own household was in crisis that night.",
+            "themes": ["family", "household", "intercession", "salvation", "children", "struggling"]
+          }
+        },
+        {
+          "content": "For thanksgiving gratitude praise and blessing God. Psalm 103:1-2. Bless the LORD O my soul and all that is within me bless his holy name. Bless the LORD O my soul and forget not all his benefits.",
+          "metadata": {
+            "kind": "verse",
+            "verseRef": "Psalm 103:1-2",
+            "translation": "KJV",
+            "book": "Psalms",
+            "chapter": 103,
+            "verseStart": 1,
+            "verseEnd": 2,
+            "quote": "Bless the LORD, O my soul: and all that is within me, bless his holy name. Bless the LORD, O my soul, and forget not all his benefits.",
+            "explanation": "Thanksgiving is framed here as an act of memory — deliberately not forgetting what has already been given, which is work the soul has to be told to do.",
+            "themes": ["thanksgiving", "gratitude", "praise", "blessing", "memory", "thank God"]
+          }
+        },
+        {
+          "content": "For giving thanks in every circumstance rejoicing and prayer. 1 Thessalonians 5:16-18. Rejoice evermore. Pray without ceasing. In every thing give thanks for this is the will of God in Christ Jesus concerning you.",
+          "metadata": {
+            "kind": "verse",
+            "verseRef": "1 Thessalonians 5:16-18",
+            "translation": "KJV",
+            "book": "1 Thessalonians",
+            "chapter": 5,
+            "verseStart": 16,
+            "verseEnd": 18,
+            "quote": "Rejoice evermore. Pray without ceasing. In every thing give thanks: for this is the will of God in Christ Jesus concerning you.",
+            "explanation": "Thanks is commanded in every thing, not for every thing — which leaves room for gratitude and grief to occupy the same prayer.",
+            "themes": ["thanksgiving", "gratitude", "joy", "prayer", "praise", "rejoice"]
+          }
+        },
+        {
+          "content": "For God's steady mercy renewed daily in loss and ruin. Lamentations 3:22-23. It is of the LORD'S mercies that we are not consumed because his compassions fail not. They are new every morning great is thy faithfulness.",
+          "metadata": {
+            "kind": "verse",
+            "verseRef": "Lamentations 3:22-23",
+            "translation": "KJV",
+            "book": "Lamentations",
+            "chapter": 3,
+            "verseStart": 22,
+            "verseEnd": 23,
+            "quote": "It is of the LORD'S mercies that we are not consumed, because his compassions fail not. They are new every morning: great is thy faithfulness.",
+            "explanation": "Written in the ruins of a destroyed city, this is thanksgiving spoken from loss rather than from comfort — which is what makes it usable on a bad day.",
+            "themes": ["thanksgiving", "mercy", "faithfulness", "loss", "provision", "grief"]
+          }
+        }
+      ]
+    },
+
+    {
+      "notebookLmSourceRef": "sample://devotional-notes",
+      "title": "Devotional notes on prayer and trust — SAMPLE",
+      "type": "devotional",
+      "language": "en",
+      "licenseNote": "Sample seed text written for demonstration. Replace with approved devotional sources.",
+      "verified": false,
+      "chunks": [
+        {
+          "content": "On praying when work is lost or income has stopped: name the fear specifically rather than praying in generalities. Ask for daily provision, for steadiness in the household, for the dignity of useful work, and for the humility to receive help. Thank God for what has not been taken away.",
+          "metadata": {
+            "kind": "devotional",
+            "petition": "name this fear plainly instead of praying around it, and to ask You for daily provision, steadiness at home, useful work, and the humility to receive help",
+            "themes": ["job loss", "unemployment", "provision", "prayer", "family", "money", "work"]
+          }
+        },
+        {
+          "content": "On praying while anxious: pray slowly and out loud if possible. Begin with what is true about God rather than with the size of the problem, then place each specific worry into His hands by name, and end by asking for the peace that guards heart and mind.",
+          "metadata": {
+            "kind": "devotional",
+            "petition": "begin with what is true about You rather than with the size of this problem, and to hand You each worry by name",
+            "themes": ["anxiety", "fear", "prayer", "peace", "worry", "panic"]
+          }
+        },
+        {
+          "content": "On praying for a struggling family or household: intercede for each person by name, ask for patience in your own speech before asking for change in theirs, and commit the household to God rather than to your own management of it.",
+          "metadata": {
+            "kind": "devotional",
+            "petition": "pray for each person in my family by name, to ask for patience in my own words before I ask for change in theirs, and to commit this household to You rather than to my own management of it",
+            "themes": ["family", "intercession", "patience", "household", "conflict", "struggling"]
+          }
+        },
+        {
+          "content": "On thanksgiving: gratitude that only follows good news is fragile. Practise naming three specific mercies from the past day, including small ones, and offer them back before asking for anything.",
+          "metadata": {
+            "kind": "devotional",
+            "petition": "name specific mercies from this day, including small ones, and offer them back to You before I ask for anything",
+            "themes": ["thanksgiving", "gratitude", "praise", "habit", "thank God"]
+          }
+        },
+        {
+          "content": "On discouragement: discouragement usually lies about permanence. Speak to your own soul as the psalmists did, tell it what is true, and ask for strength for the next single step rather than for the whole road.",
+          "metadata": {
+            "kind": "devotional",
+            "petition": "stop believing that this will always feel this way, and to ask You for strength for the next single step rather than for the whole road",
+            "themes": ["discouragement", "despair", "hope", "strength", "endurance", "depression"]
+          }
+        },
+        {
+          "content": "On asking for wisdom: bring the actual decision, not a vague request for guidance. Say what the options are, say what you are afraid of losing, and ask God for a mind willing to accept an answer you did not prefer.",
+          "metadata": {
+            "kind": "devotional",
+            "petition": "bring You the actual decision rather than a vague request, to say plainly what I am afraid of losing, and to be willing to accept an answer I did not prefer",
+            "themes": ["wisdom", "guidance", "decisions", "direction", "asking"]
+          }
+        }
+      ]
+    },
+
+    {
+      "notebookLmSourceRef": "sample://video-references",
+      "title": "Sermon & worship video references — PLACEHOLDER",
+      "type": "video_ref",
+      "language": "en",
+      "licenseNote": "PLACEHOLDER ONLY. No real video IDs are invented here. Real refs arrive with the NotebookLM corpus sync.",
+      "verified": false,
+      "chunks": [
+        {
+          "content": "Sermon reference placeholder on anxiety, worry, fear and the peace of God. When the real corpus is synced, entries of this type carry a verified YouTube URL, title and speaker taken from the approved source document, and the app embeds that video directly.",
+          "metadata": {
+            "kind": "video",
+            "videoUrl": null,
+            "placeholder": true,
+            "title": "Peace That Passes Understanding",
+            "speaker": "(speaker comes from the corpus)",
+            "themes": ["anxiety", "fear", "peace", "worry"]
+          }
+        },
+        {
+          "content": "Sermon reference placeholder on trusting God through unemployment, job loss, financial hardship and provision. Replace with corpus-synced video references.",
+          "metadata": {
+            "kind": "video",
+            "videoUrl": null,
+            "placeholder": true,
+            "title": "Provision in the Valley",
+            "speaker": "(speaker comes from the corpus)",
+            "themes": ["job loss", "provision", "hardship", "money", "trust", "unemployment"]
+          }
+        }
+      ]
+    }
+  ]
+}

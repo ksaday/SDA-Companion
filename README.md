@@ -1,36 +1,137 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Grace Companion
 
-## Getting Started
+An AI spiritual companion for Seventh-day Adventist members. A member describes
+what they are facing; the app answers with hymns, scripture, sermon references
+and an editable prayer — drawn **only** from an approved knowledge base curated
+in Google NotebookLM.
 
-First, run the development server:
+When nothing in the approved sources matches, the app says so:
+
+> No related reference was found in the approved knowledge source.
+
+It does not guess, and it does not answer from the model's own knowledge.
+
+---
+
+## Running it
+
+No API keys are needed. The app ships with a seeded sample corpus and an
+offline prayer composer.
 
 ```bash
+npm install
+npm run db:push
+npm run db:seed
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Useful scripts:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Script | What it does |
+| --- | --- |
+| `npm run db:reset` | Wipe and re-seed the local corpus |
+| `npm run db:studio` | Browse the database in Prisma Studio |
+| `npm run typecheck` | `tsc --noEmit` |
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## What is real, and what is a placeholder
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Real and working**
+- The full retrieval → confidence gate → verification → generation pipeline
+- Hymn, scripture, video and prayer components with per-claim citations
+- The fallback guarantee (try asking something the corpus does not cover)
+- Read Aloud (browser speech synthesis), prayer editing, save, copy, export, print
+- Prayer journal, saved items, session history
+- Admin source registry and the retrieval test console
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Placeholder, waiting on you**
+- **Auth** — `lib/session.ts` returns a seeded demo user. Swap it for Firebase
+  Auth; every downstream call already takes a `userId`.
+- **NotebookLM corpus** — the workspace has not been connected. See below.
+- **Subscriptions** — Stripe keys are stubbed in `.env.example`; no billing yet.
+- **Sample corpus** — `prisma/sample-corpus.json`. Scripture text is accurate
+  KJV (public domain). **Hymn numbers are unverified placeholders** and no real
+  YouTube references exist. Every seeded row is marked `verified: false` and the
+  UI labels it as sample data.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## How the NotebookLM integration works
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+NotebookLM has no public query API, so the runtime cannot call it directly.
+The design keeps NotebookLM as the **curation layer** and mirrors its sources
+into a corpus the app controls:
+
+```
+NotebookLM workspace  →  shared Google Drive folder  →  sync job
+   →  Source + SourceChunk rows  →  retrieval  →  citation chip in the UI
+```
+
+Every citation carries `notebookLmSourceRef`, so any sentence a member reads
+traces back to a specific document the church approved. To connect the real
+workspace, set `NOTEBOOKLM_NOTEBOOK_ID`, `GOOGLE_DRIVE_FOLDER_ID` and
+`GOOGLE_SERVICE_ACCOUNT_JSON`, then build the sync job against the
+`KnowledgeRetriever` interface in `lib/ai/types.ts` — that interface is the
+single swap point (a NotebookLM Enterprise or Vertex RAG adapter drops in
+without touching orchestration or UI).
+
+---
+
+## How hallucination is prevented
+
+Five layers, in `lib/ai/`:
+
+1. **Retrieval gating** (`orchestrator.ts`) — generation never runs unless
+   approved chunks clear the confidence threshold. The model is never asked an
+   open question.
+2. **Closed-context prompting** (`generator.ts`) — the prompt contains only
+   retrieved excerpts; the member's words are wrapped as data, never as
+   instructions.
+3. **Structural verification** (`verifier.ts`) — hymn numbers and verse
+   references are joined against real corpus rows; video URLs must be genuine
+   YouTube URLs that came from the corpus, or nothing is embedded.
+4. **Citation verification** — any cited chunk id not in the retrieved set is
+   treated as fabrication and the response falls back to the offline composer.
+5. **Human loop** — ratings and doctrinal flags write to the review queue.
+
+With no API key, prayers are assembled by `composeTemplatePrayer`, which uses
+fixed connective phrases that make no spiritual claim plus verbatim quotations
+from the corpus — structurally unable to hallucinate. Setting
+`GOOGLE_AI_API_KEY` routes generation through Gemini under the same rules, with
+the template composer as the fallback on any violation.
+
+---
+
+## Layout
+
+```
+app/
+  page.tsx                  the companion (home)
+  journal/ saved/ history/  member surfaces
+  admin/sources/            source registry + retrieval test console
+  api/assistant/            SSE streaming pipeline endpoint
+components/
+  assistant/                cards, prayer editor, client orchestration
+lib/
+  ai/
+    types.ts                contracts, incl. KnowledgeRetriever
+    retriever.ts            BM25 hybrid retrieval over the mirrored corpus
+    orchestrator.ts         the pipeline
+    generator.ts            template + Gemini prayer generation
+    verifier.ts             structural checks
+  db.ts  session.ts
+prisma/
+  schema.prisma             SQLite for dev, Postgres-ready
+  sample-corpus.json        UNVERIFIED seed data
+planning/                   full technical planning document
+```
+
+The dev database is SQLite so the app runs with nothing installed. Production
+targets PostgreSQL + pgvector — swap the adapter in `lib/db.ts` and the
+`provider` in `prisma/schema.prisma`.
+
+Full architecture, roadmap and rationale:
+[`planning/sda-spiritual-companion-plan.md`](planning/sda-spiritual-companion-plan.md).

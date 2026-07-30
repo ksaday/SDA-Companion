@@ -1,26 +1,103 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia,
+    'Times New Roman', serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  --surface: #fbf8f2;
+  --surface-raised: #ffffff;
+  --surface-sunken: #f3ede1;
+  --text: #23201c;
+  --text-soft: #5b544b;
+  --rule: #e4dccd;
+  --accent: #2f5d50;
+  --accent-strong: #24463d;
+  --accent-quiet: #eef3f0;
+  --gold: #a8834e;
+  --warn-bg: #fdf6e7;
+  --warn-border: #e7d3a8;
+  --warn-text: #6d5424;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --surface: #14120f;
+    --surface-raised: #1d1a16;
+    --surface-sunken: #100e0c;
+    --text: #ece5d8;
+    --text-soft: #a89f90;
+    --rule: #332e27;
+    --accent: #7fb3a1;
+    --accent-strong: #9ac9b8;
+    --accent-quiet: #1b2925;
+    --gold: #c9a86c;
+    --warn-bg: #241d10;
+    --warn-border: #4a3c1f;
+    --warn-text: #d8bd82;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+.serif {
+  font-family: var(--font-serif);
+}
+
+.prayer-body p {
+  margin-bottom: 0.9rem;
+  line-height: 1.75;
+}
+.prayer-body p:last-child {
+  margin-bottom: 0;
+}
+.prayer-body:focus {
+  outline: none;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.rise {
+  animation: rise 0.35s ease-out both;
+}
+
+.print-only {
+  display: none;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .print-sheet {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+  }
 }

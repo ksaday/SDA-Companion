@@ -1,0 +1,214 @@
+// Grace Companion — data model
+//
+// Dev uses SQLite so the app runs with zero cloud credentials.
+// Production target is PostgreSQL + pgvector: switch `provider` to "postgresql",
+// then promote the JSON-in-String columns noted below to native types
+// (String[] for lists, jsonb for metadata, vector(768) for embeddings).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// ---------------------------------------------------------------- identity
+
+model User {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  displayName String
+  photoUrl    String?
+  country     String   @default("US")
+  timezone    String   @default("UTC")
+  language    String   @default("en")
+  role        String   @default("member") // member | premium | church_admin | global_admin
+  tier        String   @default("free") // free | trial | premium | family
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  sessions AssistantSession[]
+  prayers  Prayer[]
+  journal  JournalEntry[]
+  bookmarks Bookmark[]
+}
+
+// ------------------------------------------------- knowledge corpus mirror
+// Rows here mirror documents curated in the NotebookLM workspace. Nothing the
+// assistant says may originate outside this table.
+
+model Source {
+  id                  String    @id @default(cuid())
+  notebookLmSourceRef String // id/name of the source inside the NotebookLM notebook
+  driveFileId         String? // Google Drive file the sync job reads
+  title               String
+  type                String // hymnal | bible | commentary | devotional | sermon_transcript | video_ref | audio_ref
+  language            String    @default("en")
+  licenseNote         String    @default("Unreviewed — verify before production use")
+  status              String    @default("active") // active | retired | pending_sync
+  verified            Boolean   @default(false) // false = sample/unreviewed content
+  checksum            String?
+  lastSyncedAt        DateTime?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  chunks SourceChunk[]
+  hymns  Hymn[]
+
+  @@index([status, language])
+}
+
+model SourceChunk {
+  id         String  @id @default(cuid())
+  sourceId   String
+  chunkIndex Int
+  content    String
+  tokenCount Int     @default(0)
+  // JSON: { hymnNumber?, hymnalEdition?, verseRef?, videoUrl?, speaker?, audioUrl?, themes? }
+  metadata   String  @default("{}")
+  // JSON array of floats; null until an embedding provider is configured
+  embedding  String?
+
+  source    Source                   @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  citations RecommendationCitation[]
+
+  @@unique([sourceId, chunkIndex])
+}
+
+model Hymn {
+  id            String  @id @default(cuid())
+  hymnalEdition String // SDAH_1985 | KOR_CHANMIGA | ...
+  number        Int
+  title         String
+  themes        String  @default("[]") // JSON array
+  verified      Boolean @default(false)
+  sourceId      String?
+  source        Source? @relation(fields: [sourceId], references: [id])
+
+  @@unique([hymnalEdition, number])
+}
+
+model BibleVerse {
+  id          String @id @default(cuid())
+  translation String // KJV (public domain) etc.
+  book        String
+  chapter     Int
+  verseStart  Int
+  verseEnd    Int
+  text        String
+  language    String @default("en")
+
+  @@unique([translation, book, chapter, verseStart, verseEnd])
+}
+
+// ------------------------------------------------------------- assistant
+
+model AssistantSession {
+  id            String   @id @default(cuid())
+  userId        String?
+  queryText     String
+  queryLanguage String   @default("en")
+  status        String // ok | partial | fallback | error
+  confidence    Float    @default(0)
+  latencyMs     Int      @default(0)
+  generator     String   @default("template") // template | gemini
+  createdAt     DateTime @default(now())
+
+  user            User?            @relation(fields: [userId], references: [id])
+  recommendations Recommendation[]
+  prayers         Prayer[]
+
+  @@index([userId, createdAt])
+}
+
+model Recommendation {
+  id         String   @id @default(cuid())
+  sessionId  String
+  kind       String // hymn | verse | video | prayer
+  payload    String // JSON, shape depends on kind
+  confidence Float    @default(0)
+  userRating Int? // 1 helpful, -1 not helpful
+  flagged    Boolean  @default(false)
+  flagReason String?
+  createdAt  DateTime @default(now())
+
+  session   AssistantSession         @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  citations RecommendationCitation[]
+}
+
+model RecommendationCitation {
+  id               String @id @default(cuid())
+  recommendationId String
+  sourceChunkId    String
+  relevance        Float  @default(0)
+
+  recommendation Recommendation @relation(fields: [recommendationId], references: [id], onDelete: Cascade)
+  chunk          SourceChunk    @relation(fields: [sourceChunkId], references: [id], onDelete: Cascade)
+
+  @@unique([recommendationId, sourceChunkId])
+}
+
+// ------------------------------------------------------ member content
+
+model Prayer {
+  id        String   @id @default(cuid())
+  userId    String
+  sessionId String?
+  title     String
+  bodyHtml  String
+  bodyPlain String
+  // The untouched generated text, kept for auditability after user edits.
+  originalHtml String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user    User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  session AssistantSession? @relation(fields: [sessionId], references: [id])
+
+  @@index([userId, createdAt])
+}
+
+model JournalEntry {
+  id         String    @id @default(cuid())
+  userId     String
+  entryDate  DateTime  @default(now())
+  title      String    @default("")
+  bodyHtml   String
+  tags       String    @default("[]") // JSON array
+  answeredAt DateTime?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, entryDate])
+}
+
+model Bookmark {
+  id         String   @id @default(cuid())
+  userId     String
+  targetType String // verse | hymn | sermon
+  targetId   String
+  label      String
+  meta       String   @default("{}") // JSON snapshot so the card renders without a re-query
+  createdAt  DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, targetType, targetId])
+}
+
+// ------------------------------------------------------------ analytics
+
+model SearchLog {
+  id          String   @id @default(cuid())
+  userId      String?
+  query       String
+  language    String   @default("en")
+  resultCount Int      @default(0)
+  wasFallback Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([wasFallback, createdAt])
+}
