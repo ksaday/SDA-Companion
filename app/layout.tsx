@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { AuthModal } from '@/components/auth/AuthModal'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -33,7 +34,7 @@ export default function RootLayout({
             <Link href="/" className="serif text-lg font-semibold tracking-tight">
               Grace <span style={{ color: 'var(--accent)' }}>Companion</span>
             </Link>
-            <nav className="ml-auto flex items-center gap-1 text-sm">
+            <nav className="ml-auto flex items-center gap-2 text-sm">
               {nav.map((item) => (
                 <Link
                   key={item.href}
@@ -44,6 +45,9 @@ export default function RootLayout({
                   {item.label}
                 </Link>
               ))}
+              <div className="ml-2 border-l pl-3" style={{ borderColor: 'var(--rule)' }}>
+                <AuthModal />
+              </div>
             </nav>
           </div>
         </header>
